@@ -4,7 +4,7 @@ MAINTAINER A D Ministator email: peteja@vsp.com
 # Update the image with the latest packages (recommended)
 RUN yum update -y; yum clean all
 
-# Install Apache Web Server
+# Install Java
 RUN yum install -y java; yum clean all
 
 # Add the tar file of the web site 
