@@ -1,18 +1,14 @@
 FROM centos:centos7
+ 
 MAINTAINER A D Ministator email: peteja@vsp.com
 
 # Update the image with the latest packages (recommended)
 RUN yum update -y; yum clean all
+RUN yum install -y wget 
 
 # Install Java
-RUN yum install -y java; yum clean all
+# RUN wget https://artifactory.vsp.com/ext-install-local/jdk-7u25-linux-i586.tar.gz 
+RUN wget http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar -P /tmp
 
-# Add the tar file of the web site 
-# ADD ./mysite.tar /tmp/
+ 
 
-# Docker automatically extracted. So move files to web directory
-# RUN mv /tmp/mysite/* /var/www/html
-
-# EXPOSE 80
-
-# ENTRYPOINT /bin/bash
