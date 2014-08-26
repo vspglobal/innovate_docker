@@ -9,6 +9,8 @@ RUN yum install wget -y
 
 # Get the tomcat binaries
 
+#RUN wget http://artifactory.vsp.com/ext-install-local/apache-tomcat-7.0.52.tar.gz /root
+#RUN tar -xvf /root/apache-tomcat-7.0.52.tar.gz /opt/
 
 # Unpack the tomcat binaries
 
