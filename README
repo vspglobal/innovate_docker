@@ -1,0 +1,13 @@
+
+Overcoming DNS resolution problems when outside DNS servers are blocked
+
+First run this:
+VBoxManage modifyvm boot2docker-vm --natdnshostresolver1 on
+
+
+Then run this:
+boot2docker ssh
+
+In the boot2docker VM run:
+sudo /usr/local/etc/init.d/docker stop
+sudo /usr/local/etc/init.d/docker start
