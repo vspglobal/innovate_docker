@@ -11,3 +11,11 @@ boot2docker ssh
 In the boot2docker VM run:
 sudo /usr/local/etc/init.d/docker stop
 sudo /usr/local/etc/init.d/docker start
+
+
+OR
+
+
+$ boot2docker ssh
+$ sudo udhcpc
+$ sudo /etc/init.d/docker restart
