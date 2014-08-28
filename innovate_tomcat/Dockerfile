@@ -1,19 +1,32 @@
 FROM innovate_java
-MAINTAINER A D Ministator email: peteja@vsp.com, edha@vsp.com
 
-# Update the image with the latest packages (recommended)
-RUN yum update -y; yum clean all
+MAINTAINER peteja@vsp.com
 
+EXPOSE 8080
 
-# Get the tomcat binaries
-
-RUN wget http://artifactory.vsp.com/ext-install-local/apache-tomcat-7.0.52.tar.gz -P /root/
-
-# Unpack the tomcat binaries
-RUN tar -xvf /root/apache-tomcat-7.0.52.tar.gz -C /opt/
+ENV TOMCAT_VERSION 7.0.55
+ENV DEPLOY_DIR /maven
 
 
+RUN wget http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
 
-# EXPOSE 8080
+# Unpack
+RUN tar xzf /tmp/catalina.tar.gz -C /opt
+RUN ln -s /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat
+RUN rm /tmp/catalina.tar.gz
 
-# ENTRYPOINT /bin/bash
+# Add roles
+ADD tomcat-users.xml /opt/apache-tomcat-${TOMCAT_VERSION}/conf/
+
+# Startup script
+ADD deploy-and-run.sh /opt/apache-tomcat-${TOMCAT_VERSION}/bin/
+
+# Remove unneeded apps
+RUN rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs 
+
+# VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/temp", "/tmp/hsperfdata_root"
+
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $PATH:$CATALINA_HOME/bin
+
+CMD /opt/tomcat/bin/deploy-and-run.sh
