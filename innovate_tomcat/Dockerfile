@@ -7,6 +7,7 @@ EXPOSE 8080
 ENV TOMCAT_VERSION 7.0.55
 ENV DEPLOY_DIR /maven
 
+RUN mkdir /maven
 
 RUN wget http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
 
