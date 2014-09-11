@@ -23,7 +23,7 @@ public class InfoRestController {
        return service.getInfo();
     }
 	
-	@RequestMapping(value="/inet", method=RequestMethod.GET)
+	@RequestMapping(value="/ip", method=RequestMethod.GET)
     public InetAddress getInetAddress() {
         return service.getInetAddress();
     }

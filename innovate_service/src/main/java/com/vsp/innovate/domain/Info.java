@@ -3,15 +3,15 @@ package com.vsp.innovate.domain;
 import java.net.InetAddress;
 
 public class Info {
-	private InetAddress inet;
+	private InetAddress ip;
 	private String version;
-	private String imageUrl
-	;
-	public InetAddress getInet() {
-		return inet;
+	private String imageUrl;
+	
+	public InetAddress getIp() {
+		return ip;
 	}
-	public void setInet(InetAddress inet) {
-		this.inet = inet;
+	public void setIp(InetAddress ip) {
+		this.ip = ip;
 	}
 	public String getVersion() {
 		return version;

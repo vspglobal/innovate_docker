@@ -60,7 +60,7 @@ public class InfoService{
     public Info getInfo(){
     	Info info = new Info();
         info.setImageUrl(getImageUrl());
-		info.setInet(getInetAddress());
+		info.setIp(getInetAddress());
 		info.setVersion(getVersion());
 		return info;
     }
