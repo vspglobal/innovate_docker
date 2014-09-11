@@ -42,7 +42,10 @@ Inspect image: `http://gtscloud-0158.vsp.com:5000/v1/images/{image id}/json`
 Delete repository: `http://gtscloud-0158.vsp.com:5000/v1/repositories/{namespace}/{repository}`  
 Delete tag: `http://gtscloud-0158.vsp.com:5000/v1/repositories/{namespace}/{repository}/tags/{tag}`  
   
-  
+`Push to registry`
+
+Tag first: `docker tag innovate_service:v1.0 gtscloud-0158:5000/vspglobal/innovate_service:v1.0`  
+Then push: `docker push gtscloud-0158:5000/vspglobal/innovate_service:v1.0`    
   
 # Troubleshooting
 
