@@ -24,7 +24,11 @@
 ### Port forwarding
 
 Port `10001` seems to work. Couldn't get `8080` to work. Run `portforward.sh` to open up for traffic.
-  
+
+# Use Quay.IO for registry
+
+`docker tag innovate_service:v2.0 quay.io/vspglobal/innovate_service:v2.0`  
+`docker push quay.io/vspglobal/innovate_service:v2.0`
   
 # Docker registry
 
