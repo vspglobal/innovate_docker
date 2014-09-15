@@ -10,6 +10,8 @@ ExecStartPre=-/usr/bin/docker rm innovate_api-%i
 ExecStartPre=-/usr/bin/docker login -e="." -u="vspglobal+coreos" -p="3HFLP7F3RV3UTY9929TPQ2CGC4JSDRTL6BYZXUCRYYF1256XQXQ7LMBBYKQ0RCXD" quay.io
 ExecStartPre=-/usr/bin/docker pull quay.io/vspglobal/innovate_service:v2.0
 ExecStart=/usr/bin/docker run --rm -p %i:8080 --name innovate_api-%i quay.io/vspglobal/innovate_service:v2.0
+ExecStartPost=-/bin/sh -c "PUBLIC_IP=`curl http://169.254.169.254/latest/meta-data/public-ipv4`; etcdctl set /services/innovate_api/%i \"{ \\\"host\\\": \\\"$PUBLIC_IP\\\", \\\"port\\\": %i, \\\"version\\\": \\\"52c7248a14\\\", \\\"url\\\": \\\"http://$PUBLIC_IP:%i/info\\\" }\" " 
+ExecStop=/usr/bin/etcdctl rm /services/innovate_api/%i
 ExecStop=/usr/bin/docker stop innovate_api-%i
 
 #[X-Fleet]
