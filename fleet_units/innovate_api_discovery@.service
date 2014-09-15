@@ -1,0 +1,13 @@
+[Unit]
+Description=Announce Innovate API
+BindsTo=innovate_api@%i.service
+
+
+[Service]
+ExecStart= /bin/sh -c "PUBLIC_IP=`curl http://169.254.169.254/latest/meta-data/public-ipv4`; while true; do etcdctl set /services/innovate_api/innovate_api@%i \"{ \\\"host\\\": \\\"$PUBLIC_IP\\\", \\\"port\\\": %i, \\\"version\\\": \\\"52c7248a14\\\", \\\"url\\\": \\\"http://$PUBLIC_IP:%i/info\\\" }\" --ttl 60;sleep 45;done"
+ExecStop=/usr/bin/etcdctl delete /services/innovate_api/innovate_api@%i
+
+
+[X-Fleet]
+# This unit will always be colocated with nginx1.service
+MachineOf=innovate_api@%i.service
