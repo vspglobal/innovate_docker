@@ -1,0 +1,7 @@
+# application.yml
+
+information:
+    version: "1.0"
+    imageurl: "https://s3-us-west-2.amazonaws.com/innovate-day/docker/whale.png"
+    
+    

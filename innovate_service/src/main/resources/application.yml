@@ -1,7 +1,0 @@
-# application.yml
-
-information:
-    version: "1.0"
-    imageurl: "http://artifactory.vsp.com/ext-install-local/docker/whale.png"
-    
-    
