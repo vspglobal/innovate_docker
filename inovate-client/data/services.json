@@ -1,0 +1,14 @@
+{
+    "action": "get",
+    "node": {
+        "createdIndex": 2,
+        "key": "/services",
+        "modifiedIndex": 2,
+        "value": [
+        	{"name":"foo", "url": "path to the service home 0"},
+        	{"name":"foo", "url": "path to the service home 1"},
+        	{"name":"foo", "url": "path to the service home 2"},
+        	{"name":"bar", "url": "path to the service home 3"}
+        ]
+    }
+}
