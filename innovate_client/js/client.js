@@ -16,7 +16,7 @@ function doAllTheWork() {
 function queryServiceList(wait) {
 
 	<!-- http://127.0.0.1:4001/v2/keys/services?wait=true -->
-	$.get( "data/services.json", function( data ) {
+	$.get( "http://localhost:8080/services", function( data ) {
 		  var svcArray = data.node.value;
 		  if (svcArray == null) return;
 		  var svcCount = svcArray.length;

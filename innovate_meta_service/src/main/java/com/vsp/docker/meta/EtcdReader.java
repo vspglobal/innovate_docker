@@ -1,16 +1,49 @@
 package com.vsp.docker.meta;
 
+import java.net.MalformedURLException;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
 public class EtcdReader {
-	
+
 	private volatile String svcCache = "[]";
 
-	public EtcdReader() {
-		// TODO start etcd reader job
-		// Long poll etcd and cache the results
+	public void start(final String urlString) throws MalformedURLException {
 		new Thread(new Runnable() {
+			private boolean keepGoing = true;
+
 			public void run() {
-				svcCache = "[{\"foo\":\"bar\", \"timestamp\":\""
-					+ System.currentTimeMillis() + "\"}]";
+				RestTemplate rest = new RestTemplate();
+				HttpHeaders headers = new HttpHeaders();
+				headers.add("Accept", "application/json");
+				HttpEntity<String> rqst = new HttpEntity<String>("", headers);
+
+				while (keepGoing) {
+					ResponseEntity<String> resp = rest.exchange(urlString,
+							HttpMethod.GET, rqst, String.class);
+
+					if (resp.getStatusCode().is2xxSuccessful()) {
+						if (resp.hasBody()) {
+							svcCache = resp.getBody();
+						}
+					} else {
+						System.err.println(resp.getStatusCode().toString());
+						sleep(4500);
+					}
+
+					sleep(500);
+				}
+			}
+			private void sleep(long ms) {
+				try {
+					Thread.sleep(ms);
+				} catch (InterruptedException e) {
+					keepGoing = false;
+				}
 			}
 		}).start();
 	}
