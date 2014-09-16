@@ -11,15 +11,16 @@ public class ServiceController {
 	
 	private EtcdReader etcd;
 
+	private final String urlString = System.getenv("ETCD_QUERY_URL");
+	private final long delay = Long.parseLong(System.getenv("POLL_DELAY_MS"));
+	private final long errorDelay = Long.parseLong(System.getenv("POLL_ERROR_DELAY_MS"));
+
 	public ServiceController() {
-		
-		String urlString = "http://localhost:8000/data/services.json";
-		
 		etcd = new EtcdReader();
 		try {
-			etcd.start(urlString);
+			etcd.start(urlString, delay, errorDelay);
 		} catch (MalformedURLException e) {
-			System.err.println("Bad service URL: " + urlString);
+			System.err.println("FATALY Bad service URL: " + urlString);
 			e.printStackTrace();
 			SpringApplication.exit(null);
 		}
@@ -27,9 +28,6 @@ public class ServiceController {
 
 	@RequestMapping(value="/services", produces="application/json")
 	public String services() {
-
-		// TODO Add Access-Control-Allow-Origin header!!!
-		
 		return etcd.getServices();
 	}
 }
