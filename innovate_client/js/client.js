@@ -1,14 +1,6 @@
 "use strict";
 
 function doAllTheWork() {
-
-//	console.log("doing all the work");
-
-	<!-- Get and display/log the version of etcd being accessed. -->
-	<!-- http://127.0.0.1:4001/version -->
-
-	<!-- if we fail to find etcd pop up a dialog asking for the server -->
-
 	<!-- Call the long polling function to process service instances. -->
 	queryServiceList(false);
 }
@@ -56,8 +48,9 @@ function queryServiceList(wait) {
 				}
 			)
 			.style("opacity", 0)
+			.transition()
 			.delay(function(d){ return 500*enterCount++; })
-			.transition().duration(1000)
+			.duration(1000)
 			.style("opacity", 1)
 			;
 
@@ -83,6 +76,7 @@ function buildOneNode(key, nodeEntry, dockerNode) {
 
 	}, "json" ).fail( function() {
 		setTimeout( function() {
+			console.log("Failing to find: " + key + " at: " + nodeEntry.url);
 			buildOneNode(key, nodeEntry, dockerNode);
 		},300);
 	});
