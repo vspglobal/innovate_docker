@@ -14,6 +14,7 @@ public class EtcdReader {
 
 	public void start(final String urlString, final long delay,
 			final long errorDelay) throws MalformedURLException {
+System.out.println("ETC URL -> "+urlString);
 		new Thread(new Runnable() {
 			private boolean keepGoing = true;
 

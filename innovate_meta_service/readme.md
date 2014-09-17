@@ -7,3 +7,10 @@ These are required environment variables:
 * ETCD_QUERY_URL: Defines the query used to poll etcd
 * POLL_DELAY_MS: Milliseconds the service waits before requerying etcd after a successfull request.
 * POLL_ERROR_DELAY_MS: Milliseconds the service waits before requerying etcd after a failed request.
+
+## Docker
+```
+docker build --rm=true -t="innovate_meta_service:v1.0" .
+docker tag innovate_meta_service:v1.0 quay.io/vspglobal/innovate_meta_service:v1.0
+docker push quay.io/vspglobal/innovate_meta_service:v1.0
+```

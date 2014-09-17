@@ -16,6 +16,7 @@ public class ServiceController {
 	private final long errorDelay = Long.parseLong(System.getenv("POLL_ERROR_DELAY_MS"));
 
 	public ServiceController() {
+    System.out.println("ETCD_QUERY_URL:"+urlString);
 		etcd = new EtcdReader();
 		try {
 			etcd.start(urlString, delay, errorDelay);
