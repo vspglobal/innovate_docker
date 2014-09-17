@@ -1,11 +1,29 @@
 
 #Instructions
 
+### How to submit the unit files
+```
+fleetctl submit innovate_api_v1@.service 
+fleetctl submit innovate_api_v2@.service 
+```
+
 ### How to run the containers
 
 ```
-fleetctl submit innovate_api@.service 
-fleetctl start innovate_api@{8001..8010}.service 
+fleetctl start innovate_api_v1@{8001..8003}.service 
+```
+
+### How to upgrade
+
+```
+fleetctl start innovate_api_v2@{8011..8013}.service 
+fleetctl stop innovate_api_v1@{8001..8003}.service 
+
+```
+### How to scale
+
+```
+fleetctl start innovate_api_v2@{8014..8016}.service 
 ```
 
 ### How to fetch the available servers
@@ -17,7 +35,7 @@ curl -L http://127.0.0.1:4001/v2/keys/services/innovate_api
 ### How to destroy the containers
 
 ```
-fleetctl destroy innovate_api@{8001..8010}.service 
+fleetctl destroy innovate_api_v1@.service innovate_api_v2@.service innovate_api_v1@{8001..8003}.service innovate_api_v2@{8011..8013}.service
 ```
 
 ### How to create EC2 instances
