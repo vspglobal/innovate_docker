@@ -10,14 +10,15 @@ function queryServiceList(wait) {
 	$.get( "http://54.244.91.57:8000/services", function( data ) {
 
 		var svcArray = data.node.nodes;
-		if (svcArray == null) return;
+		if (svcArray == null)
+			svcArray = [];
 
 		var nodeMap = {};
 		var svcCount = svcArray.length;
 		for (var i = 0; i < svcCount; i++) {
 			var nodeEntry = JSON.parse( svcArray[i].value );
 
-			var k = nodeEntry.host + ":" + nodeEntry.port + ":" + nodeEntry.version;
+			var k = nodeEntry.version+":"+nodeEntry.port+":"+nodeEntry.host; 
 
 			nodeMap[k] = nodeEntry;
 		}
@@ -49,7 +50,7 @@ function queryServiceList(wait) {
 			)
 			.style("opacity", 0)
 			.transition()
-			.delay(function(d){ return 500*enterCount++; })
+			//.delay(function(d){ return 500*enterCount++; })
 			.duration(1000)
 			.style("opacity", 1)
 			;
@@ -58,7 +59,7 @@ function queryServiceList(wait) {
 		var exitCount = 0;
 		p.exit()
 			.transition()
-			.delay(function(d){ return 500*exitCount++; })
+			//.delay(function(d){ return 500*exitCount++; })
 			.duration(1000)
 			.style("opacity", 0)
 			.remove()
