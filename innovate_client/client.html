@@ -9,15 +9,28 @@
 		<script src="js/jquery-2.1.1.min.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script type="text/javascript">
-			$(doAllTheWork);
+			// $(doAllTheWork)
+			setInterval(function () { $(doAllTheWork) }, 1000);			
 		</script>
+		
+		<style>
+		
+		.dockerNode {
+			float: left;
+			border: 1px solid black;
+			margin: 20px;
+			padding: 4px;
+			text-align: center;
+			font-family: Tahoma, Geneva, sans-serif;
+			font-size: 8pt;
+			color: #ffffff;
+			background-color: #369CB3;
+			
+		}
+		
+		</style>		
 	</head>
 	<body>
-		<!-- page content -->
-
 		<div id="all_the_things"></div>
-
-		<!-- Look here for auto arranging cards: http://jsfiddle.net/sulfureous/6G32Y/ -->
-
 	</body>
 </html>
