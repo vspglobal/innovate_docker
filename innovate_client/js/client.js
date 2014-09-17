@@ -32,7 +32,7 @@ function queryServiceList(wait) {
 
 		var keyArray = Object.keys(nodeMap).sort();
 
-		console.log( keyArray );
+	//	console.log( keyArray );
 
 		var p = d3.select("#all_the_things")
 			.selectAll("div")
