@@ -1,0 +1,14 @@
+[Unit]
+Description=DataDog
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill datadog-%i
+ExecStartPre=-/usr/bin/docker rm datadog-%i
+ExecStart=/usr/bin/docker run --privileged --name datadog-%i -h `hostname` -v /var/run/docker.sock:/var/run/docker.sock -v /proc/mounts:/host/proc/mounts:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e API_KEY=e56af184dbdf39b2f2214bf030f24e10 datadog/docker-dd-agent
+ExecStop=/usr/bin/docker stop datadog-%i
+
+[X-Fleet]
+Conflicts=datadog@*.service
