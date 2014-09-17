@@ -53,10 +53,17 @@ function queryServiceList(wait) {
 					buildOneNode(key, n, this);
 					return "<img style='background-color: #ffffff' src='https://s3-us-west-2.amazonaws.com/innovate-day/docker/loading.gif' height='120' width='120'/>";
 				}
-			);
+			)
+      .style("opacity", 0)
+			.transition().duration(1000)
+      .style("opacity", 1)
+			;
 
 		// Exit…
-		p.exit().remove();
+		p.exit()
+			.transition().duration(1000)
+      .style("opacity", 0)
+			.remove();
 
 
 	}, "json" );
