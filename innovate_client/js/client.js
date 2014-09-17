@@ -56,7 +56,13 @@ function queryServiceList(wait) {
 			);
 
 		// Exit…
-		p.exit().remove();
+		var exitCount = 0;
+		p.exit()
+			.transition()
+			.delay(function(d){ return 750*exitCount++; })
+			.duration(1000)
+			.style("opacity", 0)
+			.remove();
 
 
 	}, "json" );
