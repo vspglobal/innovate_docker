@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+
+d3
+	.select("body")
+	.selectAll("p")
+    .data([4, 8, 15, 16, 23, 42])
+  	.enter().append("p")
+    .text(
+    	function(d) { 
+    		return "I am number " + d + "!"; 
+    	}
+    );
+    
+	// Enter…
+	p.enter().append("p")
+		.text(String);
+
+	// Exit…
+	p.exit().remove(); 
+    
+    
+        
+    </script>
+</body>
+</html>
