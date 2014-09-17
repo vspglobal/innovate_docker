@@ -67,7 +67,7 @@ function buildOneNode(key, nodeEntry, dockerNode) {
 
 	$.get( nodeEntry.url, function( data ) {
 
-		dockerNode.innerHTML = "<img src='" + data.imageUrl + "'/><br>" + data.ip + "<br>version " + data.version;
+		dockerNode.innerHTML = "<img height='120' width='120' src='" + data.imageUrl + "'/><br>" + data.ip + "<br>v" + data.version;
 
 	}, "json" ).fail( function() {
 		setTimeout( function() {
