@@ -76,3 +76,6 @@ $ boot2docker ssh
 $ sudo udhcpc
 $ sudo /etc/init.d/docker restart
 ````
+
+# Jenkins:
+http://ec2-54-244-91-57.us-west-2.compute.amazonaws.com:81

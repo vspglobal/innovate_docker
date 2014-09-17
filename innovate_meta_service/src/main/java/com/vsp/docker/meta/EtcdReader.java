@@ -10,9 +10,11 @@ import org.springframework.web.client.RestTemplate;
 
 public class EtcdReader {
 
-	private volatile String svcCache = "[]";
+	private volatile String svcCache = "";
 
-	public void start(final String urlString) throws MalformedURLException {
+	public void start(final String urlString, final long delay,
+			final long errorDelay) throws MalformedURLException {
+System.out.println("ETC URL -> "+urlString);
 		new Thread(new Runnable() {
 			private boolean keepGoing = true;
 
@@ -32,12 +34,13 @@ public class EtcdReader {
 						}
 					} else {
 						System.err.println(resp.getStatusCode().toString());
-						sleep(4500);
+						sleep(errorDelay);
 					}
-
-					sleep(500);
+					sleep(delay);
 				}
+				System.err.println("EtcdReader exiting!");
 			}
+
 			private void sleep(long ms) {
 				try {
 					Thread.sleep(ms);

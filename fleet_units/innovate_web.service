@@ -1,0 +1,16 @@
+[Unit]
+Description=Innovate Web App
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill innovate_web
+ExecStartPre=-/usr/bin/docker rm innovate_web
+ExecStartPre=-/usr/bin/docker login -e="." -u="vspglobal+coreos" -p="3HFLP7F3RV3UTY9929TPQ2CGC4JSDRTL6BYZXUCRYYF1256XQXQ7LMBBYKQ0RCXD" quay.io
+ExecStartPre=-/usr/bin/docker pull quay.io/vspglobal/innovate_meta_service
+ExecStart=/usr/bin/docker run --rm -p 8000:8080 --name innovate_web -e "POLL_DELAY_MS=1000" -e "POLL_ERROR_DELAY_MS=5000" -e "ETCD_QUERY_URL=http://172.17.42.1:4001/v2/keys/services/innovate_api" quay.io/vspglobal/innovate_meta_service:v1.0
+ExecStop=/usr/bin/docker stop innovate_web
+
+[X-Fleet]
+MachineID=381b0d82043248cd9b9b4118cc6ba4dd
