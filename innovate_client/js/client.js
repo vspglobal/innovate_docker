@@ -39,6 +39,7 @@ function queryServiceList(wait) {
 			.data( keyArray, function(key) {return key} );
 
 		// Enter…
+		var enterCount = 0;
 		p.enter()
 			.append("div")
 			.attr("class", "dockerNode")
@@ -53,17 +54,22 @@ function queryServiceList(wait) {
 					buildOneNode(key, n, this);
 					return "<img style='background-color: #ffffff' src='https://s3-us-west-2.amazonaws.com/innovate-day/docker/loading.gif' height='120' width='120'/>";
 				}
-			);
+			)
+			.style("opacity", 0)
+			.delay(function(d){ return 500*enterCount++; })
+			.transition().duration(1000)
+			.style("opacity", 1)
+			;
 
 		// Exit…
 		var exitCount = 0;
 		p.exit()
 			.transition()
-			.delay(function(d){ return 750*exitCount++; })
+			.delay(function(d){ return 500*exitCount++; })
 			.duration(1000)
 			.style("opacity", 0)
-			.remove();
-
+			.remove()
+			;
 
 	}, "json" );
 
