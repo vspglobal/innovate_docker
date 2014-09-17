@@ -31,7 +31,6 @@ function queryServiceList(wait) {
 			.data( keyArray, function(key) {return key} );
 
 		// Enter…
-		var enterCount = 0;
 		p.enter()
 			.append("div")
 			.attr("class", "dockerNode")
@@ -49,16 +48,14 @@ function queryServiceList(wait) {
 			)
 			.style("opacity", 0)
 			.transition()
-			.delay(function(d){ return 500*enterCount++; })
 			.duration(1000)
 			.style("opacity", 1)
 			;
 
-		// Exit…
-		var exitCount = 0;
 		p.exit()
+			.html('<img height="120" width="120" style="background-color: #ffffff" src="fire.gif">')
 			.transition()
-			.delay(function(d){ return 500*exitCount++; })
+			.delay(1000)
 			.duration(1000)
 			.style("opacity", 0)
 			.remove()
@@ -76,7 +73,7 @@ function buildOneNode(key, nodeEntry, dockerNode) {
 
 	}, "json" ).fail( function() {
 		setTimeout( function() {
-			console.log("Failing to find: " + key + " at: " + nodeEntry.url);
+			//console.log("Failing to find: " + key + " at: " + nodeEntry.url);
 			buildOneNode(key, nodeEntry, dockerNode);
 		},300);
 	});
