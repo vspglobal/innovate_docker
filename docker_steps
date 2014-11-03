@@ -1,0 +1,10 @@
+fleetctl start innovate_api_v1@{8001..8003}.service
+
+
+ssh core@54.244.91.57
+
+fleetctl start innovate_api_v2@{8011..8013}.service
+
+fleetctl stop innovate_api_v1@{8001..8003}.service
+
+fleetctl start innovate_api_v2@{8014..8025}.service
