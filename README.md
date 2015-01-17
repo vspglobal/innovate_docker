@@ -59,7 +59,42 @@ Make sure that docker is installed on the VM where Jenkins is running (or some o
 ### Docker 
 
 We need to make sure that the Docker REST service is started. Do this by starting up Docker deamon with the following command  
+
+
+On RHEL 6x first run 
+
+
+
+### install epel repo  
   
+`rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
+  
+### install docker 
+  
+`yum install -y docker-io`  
+  
+### Troubleshooting 
+  
+There's a possibility that you need the updated device-mapper libs. Install/upgrade them here:  
+  
+`rpm -ivh ftp://rpmfind.net/linux/centos/6.6/os/x86_64/Packages/device-mapper-1.02.90-2.el6.x86_64.rpm ftp://rpmfind.net/linux/centos/6.6/os/x86_64/Packages/device-mapper-libs-1.02.90-2.el6.x86_64.rpm`
+
+If there's an error with 'cgroup'. Something like:   
+   
+`failed to find the cgroup root`  
+  
+there's a good thread here. `https://github.com/docker/docker/issues/8791`  
+  
+`$ sudo /etc/init.d/cgconfig restart`   
+  
+If docker is running, you will also have to restart the Docker deamon.
+  
+  
+
+   
+### Running docker deamon  
+  
+
 `/usr/bin/docker -H tcp://127.0.0.1:4243 -H unix:///var/run/docker.sock -d &` 
   
 or set  
