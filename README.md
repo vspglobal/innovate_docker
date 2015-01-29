@@ -90,7 +90,6 @@ If there's an error with 'cgroup'. Something like:
    
 `failed to find the cgroup root`  
   
-### Running docker deamon  
 there's a good thread here. `https://github.com/docker/docker/issues/8791`  
   
 
