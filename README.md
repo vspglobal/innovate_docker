@@ -68,7 +68,12 @@ On RHEL 6x first run
 ### install epel repo  
   
 `rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
+ 
+If you get an error saying something like:   
+`Error: Cannot retrieve metalink for repository: epel. Please verify its path and try again`  
+Manually edit the /etc/yum.repos.d/epel.repo file and change the https references to http.  
   
+ 
 ### install docker 
   
 `yum install -y docker-io`  
