@@ -69,20 +69,38 @@ On RHEL 6x first run
   
 `rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`
  
-If you get an error saying something like:   
-`Error: Cannot retrieve metalink for repository: epel. Please verify its path and try again`  
-Manually edit the /etc/yum.repos.d/epel.repo file and change the https references to http.  
   
- 
 ### install docker 
   
 `yum install -y docker-io`  
   
+### Troubleshooting 
+
   
+If you get an error saying something like:   
+`Error: Cannot retrieve metalink for repository: epel. Please verify its path and try again`  
+Manually edit the /etc/yum.repos.d/epel.repo file and change the https references to http.  
+
+    
 There's a possibility that you need the updated device-mapper libs. Install/upgrade them here:  
   
 `rpm -ivh ftp://rpmfind.net/linux/centos/6.6/os/x86_64/Packages/device-mapper-1.02.90-2.el6.x86_64.rpm ftp://rpmfind.net/linux/centos/6.6/os/x86_64/Packages/device-mapper-libs-1.02.90-2.el6.x86_64.rpm`
+
+If there's an error with 'cgroup'. Something like:   
+   
+`failed to find the cgroup root`  
   
+### Running docker deamon  
+there's a good thread here. `https://github.com/docker/docker/issues/8791`  
+  
+
+`$ sudo /etc/init.d/cgconfig restart`   
+  
+If docker is running, you will also have to restart the Docker deamon.
+  
+  
+
+   
 ### Running docker deamon  
   
 
